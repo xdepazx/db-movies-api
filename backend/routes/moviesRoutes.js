@@ -3,8 +3,8 @@ const router = express.Router()
 const {getMovies, setMovies, updateMovies, deleteMovies} = require ('../controllers/movieController')
 const {protect} = require('../middleware/authMiddleware')
 
-router.route('/').get(protect, getMovies).post(protect, setMovies)
+router.route('/').get(getMovies).post(setMovies)
 
-router.route('/:id').put(protect, updateMovies).delete(protect, deleteMovies)
+router.route('/:id').put(updateMovies).delete(deleteMovies)
 
 module.exports = router
