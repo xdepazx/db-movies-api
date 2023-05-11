@@ -17,7 +17,7 @@ const setMovies = asyncHandler (async (req, res )=> {
         title: req.body.title,
         overview: req.body.overview,
         poster_path: req.body.poster_path,
-        vote_count: req.body.like_count
+        vote_count: req.body.vote_count
     })
 
     res.status(201).json(movie)
