@@ -17,7 +17,8 @@ const setMovies = asyncHandler (async (req, res )=> {
         title: req.body.title,
         overview: req.body.overview,
         poster_path: req.body.poster_path,
-        vote_count: req.body.vote_count
+        vote_count: req.body.vote_count,
+        user:req.user.id
     })
 
     res.status(201).json(movie)
@@ -44,6 +45,10 @@ const deleteMovies = asyncHandler (async (req, res )=> {
     if(!movie) {
         res.status(400)
         throw new Error('Movie not found')
+    }
+    if (tarea.user.toString() !== req.user.id) {
+        res.status(401)
+        throw new Error('Acceso no Autorizado, la tarea no pertenece al usuario logeado')
     }
     await tarea.deleteOne()
 

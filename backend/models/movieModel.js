@@ -11,6 +11,7 @@ const movieSchema = mongoose.Schema({
         required: [true, 'introduce overview']
     },
     poster_path: {
+        data: Buffer,
         type: String,
         required: [true, 'introduce imagen']
     },
