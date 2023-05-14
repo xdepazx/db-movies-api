@@ -48,10 +48,10 @@ const deleteMovies = asyncHandler (async (req, res )=> {
         res.status(400)
         throw new Error('Movie not found')
     }
-    if (movie.user.toString() !== req.user.id) {
+    /* if (movie.user.toString() !== req.user.id) {
         res.status(401)
         throw new Error('Acceso no Autorizado, la tarea no pertenece al usuario logeado')
-    }
+    } */
     await movie.deleteOne()
 
     res.status(200).json({id: req.params.id})
