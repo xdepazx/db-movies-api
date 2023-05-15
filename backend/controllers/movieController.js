@@ -37,18 +37,13 @@ const setMovies = asyncHandler (async (req, res )=> {
 // * aquí debería ir el vote_count
 const updateMovies = asyncHandler (async (req, res )=> {
     const movie = await Movie.findById(req.params.id)
-    if(!movie) {
+    if(movie.length == 0){
         res.status(400)
-        throw new Error('Movie no encontrada')
+        throw new Error('Pelicula no encontrada')
     }
-    /* if (movie.user.toString() !== req.user.id) {
-        res.status(401)
-        throw new Error('Acceso no autorizado')
-    } */
-
-    const movieModificada = await Movie.findByIdAndUpdate(req.params.id,{vote_count: movie.vote_count}, {new: true})
-    movie.vote_count++
-    await movie.save()
+    
+    const vote_count = movie.vote_count + 1
+    const movieModificada = await Movie.findByIdAndUpdate(movie._id, {vote_count:vote_count}, {new: true})
     res.status(200).json(movieModificada)
 })
 
