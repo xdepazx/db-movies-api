@@ -8,17 +8,13 @@ const getMovies = asyncHandler (async (req, res )=> {
 
 //! getMovie id
 const getMovie = asyncHandler( async (req, res) => {
-    const movie = await Movie.find({id:req.params.id})
+    const movie = await Movie.findById(req.params.id)
     if(movie.length == 0){
         res.status(400)
         throw new Error('Pelicula no encontrada')
     }
-    const movieFound = await Movie.findById(movie[0]._id)
-    if(!movieFound){
-        res.status(400)
-        throw new Error('Pelicula no encontrada')
-    }
-    res.status(200).json(movieFound)
+    
+    res.status(200).json(movie)
 })
 
 //! set x user
